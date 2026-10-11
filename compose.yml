@@ -14,7 +14,8 @@ services:
       docker-in-docker:
         condition: service_started
     container_name: runner
-    env_file: $HOME/config/runner/runner-config.yml
+    environment:
+      DOCKER_HOST: tcp://docker-in-docker:2375
     volumes:
       - $HOME/contents/runner/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
